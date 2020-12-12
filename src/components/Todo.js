@@ -1,9 +1,15 @@
 import React from 'react'
+import TodoCard from './TodoCard'
+
+
 
 const Todo = () => {
     return (
-        <div>
-          <h1>HEllo World</h1>
+        <div  >
+
+           <TodoCard />
+      
+
         </div>
     )
 }
