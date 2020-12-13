@@ -1,3 +1,4 @@
+const url = 'http://127.0.0.1:8000/api/task-list/'
 export const addTodo = (todo) => {
 
     return (dispatch) => {
@@ -16,13 +17,20 @@ export const editTd = (todo, id, completed) => {
     }
 }
 
+const populateTodos = (todos) => {
+    return {
+        type: "ADD_TODOS",
+        todos
+    }
+}
+
 export const fetchTodos = () => {
-      
+
     return (dispatch) => {
-        fetch('https://rent-me-back-end.herokuapp.com/cars')
+        fetch(url)
             .then( resp => resp.json() )
-            .then( todos => {  
-                dispatch(addCars(todos))})
+            .then( todos => { 
+                dispatch(populateTodos(todos))})
     }
 }
        

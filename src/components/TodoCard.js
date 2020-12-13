@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,10 +7,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { addTodo, editTd } from '../actions/index';
+import { addTodo, editTd, fetchTodos } from '../actions/index';
 import { connect } from 'react-redux';
 import NewTodoCard from './NewTodoCard'
 import Draggable from 'react-draggable';
+import Loading from './Loading'
 
 const useStyles = makeStyles({
   root: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
     
 });
 
- const TodoCard = ({addTodo, storeTodos, editTd}) => {
+ const TodoCard = ({addTodo, storeTodos, editTd, fetchTodos, loading}) => {
   const classes = useStyles();
   const [todo, setTodo] = useState('')
   const [completed, setCompleted] = useState(false)
@@ -60,8 +61,8 @@ const useStyles = makeStyles({
     setEdit(false)
   }
 
-  let renderTodos = storeTodos.map((todo)=> <NewTodoCard key={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
 
+  let renderTodos = storeTodos.map((todo)=> <NewTodoCard key={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
   return (
     <Card className={classes.root}>
         <Card className={classes.card2}>
@@ -76,21 +77,23 @@ const useStyles = makeStyles({
  
       </CardActionArea>
       </Card>
-   
-
         <CardContent>
            {renderTodos}
         </CardContent>
- 
-  
     </Card>
   );
 }
+
+   
+
+ 
+  
 const mapStateToProps = storeTd => {
-           
+           console.log(storeTd.todo.loading)
     return {
-      storeTodos: storeTd.todo.todos
+      storeTodos: storeTd.todo.todos,
+      loading: storeTd.todo.loading
     }
    };
 
-export default connect(mapStateToProps, { addTodo, editTd })(TodoCard);
+export default connect(mapStateToProps, { addTodo, editTd, fetchTodos })(TodoCard);
