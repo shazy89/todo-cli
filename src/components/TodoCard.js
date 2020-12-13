@@ -6,8 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-
 import TextField from '@material-ui/core/TextField';
+import { addTodo } from '../actions/index';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -31,14 +32,21 @@ const useStyles = makeStyles({
     
 });
 
-export default function MediaCard() {
+ const TodoCard = ({addTodo}) => {
   const classes = useStyles();
   const [todo, setTodo] = useState(null)
+  const [completed, setCompleted] = useState(false)
   const [edit, setEdit] = useState(false)
 
   const handleSubmit = (e) => {
      e.preventDefault()
-      
+     const todoObj = {
+         task: todo,
+         completed: completed
+  }
+     addTodo(todoObj)
+     setTodo(null)
+     setCompleted(false)
   }
 
   return (
@@ -46,7 +54,7 @@ export default function MediaCard() {
         <Card className={classes.card2}>
       <CardActionArea>
        <form onSubmit={handleSubmit} style={{display: 'flex'}}>
-        <TextField style={{width: '77%', marginTop: '5%', marginBottom: 'auto'}} onChange={e => setTodo(e.target.value)} id="standard-basic" variant="outlined" label="Add " />
+        <TextField style={{width: '77%', marginTop: '5%', marginBottom: 'auto'}} onChange={e => setTodo(e.target.value)} value={todo} id="standard-basic" variant="outlined" label="Add task .. " />
         <Button style={{width: '23%', marginTop:'5%'}} type='submit' size='large' variant="contained" color="primary" >
           Submit
         </Button>
@@ -60,3 +68,5 @@ export default function MediaCard() {
     </Card>
   );
 }
+
+export default connect(null, { addTodo })(TodoCard);

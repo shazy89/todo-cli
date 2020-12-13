@@ -1,12 +1,9 @@
-export default (state={users: [], }, action) => {
+export default (state={todos: [], loading: true }, action) => {
   
     switch(action.type) {
-        case "POPULATE_USERS":
-            
-            return {
-               ...state, 
-               users:  action.users ,
-               loading: false };
+        case "ADD_TODO":
+            debugger
+            return {...state, todos: [...state.todos, action.todo]}
                
                default:
                 return state;
