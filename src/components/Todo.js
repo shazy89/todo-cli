@@ -5,7 +5,7 @@ import Loading from './Loading'
 import {fetchTodos} from '../actions/index'
 
 const Todo = ({loading, fetchTodos}) => {
-console.log(loading)
+
 useEffect(() => {
     fetchTodos()
   }, []);
@@ -13,10 +13,10 @@ useEffect(() => {
         <div  >
           {loading ? <Loading /> : <TodoCard />}
         </div>
+      )
+  }
       
 
-    )
-}
 const mapStateToProps = storeTd => {
     return {
     

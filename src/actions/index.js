@@ -9,7 +9,7 @@ export const addTodo = (todo) => {
 export const editTd = (todo, id, completed) => {
       let td = {
           id: id,
-          task: todo,
+          title: todo,
           completed: completed
       }
     return (dispatch) => {

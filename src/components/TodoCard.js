@@ -47,7 +47,7 @@ const useStyles = makeStyles({
      e.preventDefault()
      const todoObj = {
          id: storeTodos.length,
-         task: todo,
+         title: todo,
          completed: completed
   }
      addTodo(todoObj)
@@ -62,10 +62,11 @@ const useStyles = makeStyles({
   }
 
 
-  let renderTodos = storeTodos.map((todo)=> <NewTodoCard key={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
+  const renderTodos = storeTodos.map((todo)=> <NewTodoCard id={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
+
   return (
-    <Card className={classes.root}>
-        <Card className={classes.card2}>
+    <Card className={classes.root} id='1'>
+        <Card className={classes.card2} id='2'>
       <CardActionArea>
        <form onSubmit={edit ? editTodo : handleSubmit } style={{display: 'flex'}}>
         <TextField style={{width: '77%', marginTop: '5%', marginBottom: 'auto'}} 
@@ -89,11 +90,11 @@ const useStyles = makeStyles({
  
   
 const mapStateToProps = storeTd => {
-           console.log(storeTd.todo.loading)
+        
     return {
       storeTodos: storeTd.todo.todos,
       loading: storeTd.todo.loading
     }
-   };
+ };
 
 export default connect(mapStateToProps, { addTodo, editTd, fetchTodos })(TodoCard);
