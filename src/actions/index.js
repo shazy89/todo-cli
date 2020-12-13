@@ -1,10 +1,33 @@
 const url = 'http://127.0.0.1:8000/api/task-list/'
-export const addTodo = (todo) => {
+const addTodo = (todo) => {
 
     return (dispatch) => {
         dispatch({type: 'ADD_TODO', todo})
     }
 }
+
+export const createTodo = (todoObj) => {
+    
+    return (dispatch) => {
+  fetch('http://127.0.0.1:8000/api/task-create/', {
+    method: 'POST',
+    headers: {
+        'Content-type':'application/json',
+     
+    },
+    body: JSON.stringify(todoObj)
+})
+.then((response) => response.json())
+.then(todo => { debugger
+  dispatch(addTodo(todo))
+})
+.catch((error)=> {
+    console.log('ERROR:', error)
+})
+}
+}
+        
+
 
 export const editTd = (todo, id, completed) => {
       let td = {
@@ -33,4 +56,4 @@ export const fetchTodos = () => {
                 dispatch(populateTodos(todos))})
     }
 }
-       
+    

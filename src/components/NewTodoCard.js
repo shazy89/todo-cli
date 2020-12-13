@@ -31,7 +31,7 @@ const useStyles = makeStyles({
       return (
      
           <Card className={classes.root} id={id}>
-             <CardContent>
+             <CardContent  style={{fontFamily: 'cursive'}}>
                 {todo.title}
                 <Button className={classes.button} variant="outlined">done</Button>
                 <Button className={classes.button} onClick={e => handleEdit(e)} variant="outlined">Edit</Button>
