@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 
  const TodoCard = ({addTodo}) => {
   const classes = useStyles();
-  const [todo, setTodo] = useState(null)
+  const [todo, setTodo] = useState('')
   const [completed, setCompleted] = useState(false)
   const [edit, setEdit] = useState(false)
 
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
          completed: completed
   }
      addTodo(todoObj)
-     setTodo(null)
+     setTodo('')
      setCompleted(false)
   }
 
@@ -68,5 +68,11 @@ const useStyles = makeStyles({
     </Card>
   );
 }
+const mapStateToProps = storeTd => {
+            console.log(storeTd) 
+    return {
+      storeTodos: storeTd
+    }
+   };
 
-export default connect(null, { addTodo })(TodoCard);
+export default connect(mapStateToProps, { addTodo })(TodoCard);
