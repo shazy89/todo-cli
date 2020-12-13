@@ -4,13 +4,15 @@ import TodoCard from './TodoCard'
 
 
 const Todo = () => {
+
+
     return (
         <div  >
-
            <TodoCard />
+        </div>
       
 
-        </div>
     )
 }
+        
 export default Todo;

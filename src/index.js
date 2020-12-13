@@ -6,7 +6,7 @@ import App from './App';
 import rootReducer from './reducers/rootReducer'
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,6 +16,7 @@ const store = createStore(rootReducer,
 
 ReactDOM.render(
   <React.StrictMode>
+    <CssBaseline />
     <Provider store={store} >
       <App  />
     </Provider>
