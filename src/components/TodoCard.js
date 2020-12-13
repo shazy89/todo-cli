@@ -62,7 +62,7 @@ const useStyles = makeStyles({
   }
 
 
-  const renderTodos = storeTodos.map((todo)=> <NewTodoCard id={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
+  const tasks = storeTodos.map((todo)=> <NewTodoCard id={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
 
   return (
     <Card className={classes.root} id='1'>
@@ -79,7 +79,7 @@ const useStyles = makeStyles({
       </CardActionArea>
       </Card>
         <CardContent>
-           {renderTodos}
+           {tasks}
         </CardContent>
     </Card>
   );
