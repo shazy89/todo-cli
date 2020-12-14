@@ -5,7 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { createTodo, editTd, fetchTodos } from '../actions/index';
+import { createTodo, editTd } from '../actions/index';
 import { connect } from 'react-redux';
 import NewTodoCard from './NewTodoCard'
 import Draggable from 'react-draggable'
@@ -20,7 +20,8 @@ const useStyles = makeStyles({
     marginRight: 'auto',
     marginTop: '10%',
     height: 600,
-    backgroundColor: 'cadetblue'
+    backgroundColor: "lightgrey",
+    boxShadow: '0 23px 38px rgba(0,0,0,0.35), 0 18px 15px rgba(0,0,0,0.29)'
   },
   media: {
     height: 440,
@@ -31,12 +32,13 @@ const useStyles = makeStyles({
     maxWidth: '90%',
     marginLeft: 'auto',
     marginRight: 'auto', 
+    boxShadow: '0 23px 38px rgba(0,0,0,0.35), 0 18px 15px rgba(0,0,0,0.29)'
   }  
 
     
 });
 
- const TodoCard = ({createTodo, storeTodos, editTd, fetchTodos, loading}) => {
+ const TodoCard = ({createTodo, storeTodos, editTd}) => {
   const classes = useStyles();
   const [todo, setTodo] = useState('')
   const [completed, setCompleted] = useState(false)
@@ -45,6 +47,7 @@ const useStyles = makeStyles({
 
   const handleSubmit = (e) => {
      e.preventDefault()
+     
      const todoObj = {
          id: null,
          title: todo,
@@ -53,10 +56,16 @@ const useStyles = makeStyles({
      createTodo(todoObj)
      setTodo('')
      setCompleted(false)
-  }
+  };
+
   const editTodo = (e) => {
     e.preventDefault()
-    editTd(todo, id, completed)
+    const todoObj = {
+      id: id,
+      title: todo,
+      completed: completed
+}
+    editTd(todoObj)
     setTodo('')
     setEdit(false)
   }
@@ -65,7 +74,7 @@ const useStyles = makeStyles({
   const tasks = storeTodos.map((todo)=> <NewTodoCard id={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
 
   return (
-    <Card className={classes.root} id='1'>
+    <Card className={classes.root} id='1' elevation={4}>
         <Card className={classes.card2} id='2'>
       <CardActionArea>
        <form onSubmit={edit ? editTodo : handleSubmit } style={{display: 'flex'}}>
@@ -95,7 +104,7 @@ const mapStateToProps = storeTd => {
   }
 };
    
-export default connect(mapStateToProps, { createTodo, editTd, fetchTodos })(TodoCard);
+export default connect(mapStateToProps, { createTodo, editTd })(TodoCard);
 
  
   

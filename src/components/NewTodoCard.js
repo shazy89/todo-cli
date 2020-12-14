@@ -9,7 +9,8 @@ const useStyles = makeStyles({
       maxWidth: '90%',
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: '5px' 
+      marginTop: '5px',
+      boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)' 
     },
     button: {
         float: 'right'

@@ -3,7 +3,7 @@ export default (state={todos: [], loading: true }, action) => {
     switch(action.type) {
         case "ADD_TODO":
             
-            return {...state, todos: [...state.todos, action.todo]}
+            return {...state, todos: [ action.todo, ...state.todos]}
 
         case "EDIT_TODO":
             const edit = state.todos.map(todo => {
