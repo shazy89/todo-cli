@@ -13,7 +13,7 @@ export const createTodo = (todoObj) => {
    method: 'POST',
    headers: {
        'Content-type':'application/json',
-    
+       Accept: 'application/json'
    },
    body: JSON.stringify(todoObj)
    })
@@ -49,7 +49,7 @@ export const editTd = (todoInfo) => {
             body: JSON.stringify(todoInfo)
         })
             .then( resp => resp.json() )
-            .then( todo => { debugger
+            .then( todo => { 
                 dispatch(editTask(todo))
             })
             .catch((errors) => console.log(errors) )

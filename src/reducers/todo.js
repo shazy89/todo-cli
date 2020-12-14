@@ -6,8 +6,9 @@ export default (state={todos: [], loading: true }, action) => {
             return {...state, todos: [ action.todo, ...state.todos]}
 
         case "EDIT_TODO":
+            
             const edit = state.todos.map(todo => {
-                if(todo.id === action.td.id) return action.td
+                if(todo.id === action.todoObj.id) return action.todoObj
                 else return todo
                 })
                 return {...state, 

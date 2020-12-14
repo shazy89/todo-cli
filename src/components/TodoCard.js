@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import { createTodo, editTd } from '../actions/index';
 import { connect } from 'react-redux';
 import NewTodoCard from './NewTodoCard'
-import Draggable from 'react-draggable'
+
 
 
 
