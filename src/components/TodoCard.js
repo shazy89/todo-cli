@@ -9,9 +9,6 @@ import { createTodo, editTd } from '../actions/index';
 import { connect } from 'react-redux';
 import NewTodoCard from './NewTodoCard'
 
-
-
-
 const useStyles = makeStyles({
   root: {
     display: 'row',
@@ -34,9 +31,12 @@ const useStyles = makeStyles({
     marginRight: 'auto', 
     boxShadow: '0 23px 38px rgba(0,0,0,0.35), 0 18px 15px rgba(0,0,0,0.29)'
   }  
+});
+
+
+
 
     
-});
 
  const TodoCard = ({createTodo, storeTodos, editTd}) => {
   const classes = useStyles();
@@ -93,10 +93,6 @@ const useStyles = makeStyles({
   );
 }
  
-        
-    
-  
-
 const mapStateToProps = storeTd => {
   return {
     storeTodos: storeTd.todo.todos,
@@ -105,6 +101,10 @@ const mapStateToProps = storeTd => {
 };
    
 export default connect(mapStateToProps, { createTodo, editTd })(TodoCard);
+        
+    
+  
+
 
  
   

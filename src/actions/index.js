@@ -38,7 +38,7 @@ export const editTask = (todoObj) => {
 export const editTd = (todoInfo) => {
    
     return (dispatch) => {
-        fetch(url + 'task-update/', {
+        fetch(url + `task-update/${todoInfo.id}`, {
             method: "POST",
             headers: {
                 'Content-type':'application/json',
@@ -66,7 +66,6 @@ export const editTd = (todoInfo) => {
     }
     
     export const fetchTodos = () => {
-    
         return (dispatch) => {
             fetch(url + 'task-list/')
                 .then( resp => resp.json() )
@@ -74,12 +73,33 @@ export const editTd = (todoInfo) => {
                     dispatch(populateTodos(todos))})
         }
     }
-
+    
     // Remove Todos
+    const removeTodo = (todo) => {
+        return {
+            type: 'DELETE_TODO',
+            todo
+          }
+        }
 
-    export const deleteTodo = () => {
-
+    export const deleteTodo = (todoId) => {
+        return (dispatch) => {
+            return fetch(`http://127.0.0.1:8000/api/task-delete/${todoId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type':'application/json'
+                }
+            })
+                 .then( resp => resp.json() )
+                 .then( todo => { 
+                   dispatch(removeTodo(todoId))
+                   alert(todo)
+            })
+         }
     }
+       
+
+
            
                
                
