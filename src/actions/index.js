@@ -1,5 +1,5 @@
-const url = 'http://127.0.0.1:8000/api/task-list/'
-const urlUpdate = 'http://127.0.0.1:8000/api/task-update/'
+const url = 'http://127.0.0.1:8000/api/'
+
 // New todo
 const addTodo = (todo) => {
     return (dispatch) => {
@@ -9,7 +9,7 @@ const addTodo = (todo) => {
 export const createTodo = (todoObj) => {
     
     return (dispatch) => {
-     fetch('http://127.0.0.1:8000/api/task-create/', {
+     fetch(url + 'task-create/', {
    method: 'POST',
    headers: {
        'Content-type':'application/json',
@@ -38,7 +38,7 @@ export const editTask = (todoObj) => {
 export const editTd = (todoInfo) => {
    
     return (dispatch) => {
-        fetch(`${urlUpdate + todoInfo.id}/`, {
+        fetch(url + 'task-update/', {
             method: "POST",
             headers: {
                 'Content-type':'application/json',
@@ -68,11 +68,17 @@ export const editTd = (todoInfo) => {
     export const fetchTodos = () => {
     
         return (dispatch) => {
-            fetch(url)
+            fetch(url + 'task-list/')
                 .then( resp => resp.json() )
                 .then( todos => { 
                     dispatch(populateTodos(todos))})
         }
+    }
+
+    // Remove Todos
+
+    export const deleteTodo = () => {
+
     }
            
                
