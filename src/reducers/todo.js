@@ -10,15 +10,16 @@ export default (state={todos: [], loading: true }, action) => {
                            todos: action.todos,
                            loading: false}
         case "EDIT_TODO":
+  
             const edit = state.todos.map(todo => {
                 if(todo.id === action.todoObj.id) return action.todoObj
                 else return todo
                 })
                 return {...state, 
                              todos: edit}
+
          case 'DELETE_TODO':
              const todos = state.todos.filter(todo => todo.id !== action.todo )
-             
              return {...state, todos: todos,
                         loading: false };
                         
@@ -26,6 +27,7 @@ export default (state={todos: [], loading: true }, action) => {
                     return state;
               }  
           }
+             
                       
 
                

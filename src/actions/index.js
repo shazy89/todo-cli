@@ -36,9 +36,9 @@ export const editTask = (todoObj) => {
     }
 }
 export const editTd = (todoInfo) => {
-   
+
     return (dispatch) => {
-        fetch(url + `task-update/${todoInfo.id}`, {
+        fetch(url + `task-update/${todoInfo.id}/`, {
             method: "POST",
             headers: {
                 'Content-type':'application/json',

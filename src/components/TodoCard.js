@@ -70,8 +70,10 @@ const useStyles = makeStyles({
     setEdit(false)
   }
 
+  const tasks =  storeTodos.sort((a, b) => a.completed - b.completed).map((todo)=> <NewTodoCard id={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
+    
+  
 
-  const tasks = storeTodos.map((todo)=> <NewTodoCard id={todo.id} todo={todo} setTodo={setTodo} setEdit={setEdit} setId={setId}/>)
 
   return (
     <Card className={classes.root} id='1' elevation={4}>
